@@ -146,6 +146,16 @@ const exportExcel = async () => {
 
     // 2. 转 worksheet
     const worksheet = XLSX.utils.json_to_sheet(data);
+    // 设置列距离
+    worksheet['!cols'] = [
+      { wch: 4 },   // 序号
+      { wch: 12 },  // 公司ID
+      { wch: 50 },  // 公司名称
+      { wch: 8 },  // 邀请码
+      { wch: 12 },  // 最大邀请数
+      { wch: 12 },  // 已注册人数
+      { wch: 30 },  // 备注
+    ];
 
     // 3. 创建 workbook
     const workbook = XLSX.utils.book_new();
@@ -169,8 +179,6 @@ const exportExcel = async () => {
   }finally {
     exporting.value = false;
   }
-
-  
   
 };
 

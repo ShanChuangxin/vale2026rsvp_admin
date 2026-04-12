@@ -87,7 +87,7 @@
         </el-descriptions-item>
 
         <el-descriptions-item label="到达时间">
-          {{ user.arrival_hour }} <span v-if="user.arrival_hour!=null&&user.arrival_min!=null"> : </span> {{ user.arrival_min }}
+          <span v-if="user.arrival_hour!=null&&user.arrival_min!=null">{{ user.arrival_hour }} : {{ user.arrival_min }}</span> 
         </el-descriptions-item>
 
         <el-descriptions-item label="返程日期">
@@ -103,7 +103,7 @@
         </el-descriptions-item>
 
         <el-descriptions-item label="返程时间">
-          {{ user.departure_hour }} <span v-if="user.departure_hour!=null&&user.departure_min!=null"> : </span> {{ user.departure_min }}
+           <span v-if="user.departure_hour!=null&&user.departure_min!=null">{{ user.departure_hour }} : {{ user.departure_min }}</span> 
         </el-descriptions-item>
 
         <el-descriptions-item label="酒店入驻日期">

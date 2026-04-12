@@ -25,6 +25,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const isProduction = mode === "production";
 
   return {
+    base: '/projects/vale2026admin',
     resolve: {
       alias: {
         "@": pathSrc,
