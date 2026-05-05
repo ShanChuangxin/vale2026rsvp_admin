@@ -5,6 +5,8 @@
       <template #header>
         <div class="header">
           <span>用户详情</span>
+          <el-button v-if="user.is_signin" type="danger" @click="userSignin(false)">已签到</el-button>
+          <el-button v-else type="success" @click="userSignin(true)">未签到</el-button>
           <el-button type="primary" @click="openDrawer">编辑</el-button>
         </div>
       </template>
@@ -129,6 +131,10 @@
         <el-descriptions-item label="备注">
           {{ user.remarks }}
         </el-descriptions-item>
+
+        <el-descriptions-item label="是否签到">
+          {{ user.is_signin ? '是' : '否' }}
+        </el-descriptions-item>
       </el-descriptions>
 
       <!-- <div style="margin-top: 20px">
@@ -213,6 +219,7 @@ import { ref, reactive, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { ElMessage } from "element-plus";
 import { getUserDetail, updateUser } from "@/api/user";
+// import { number } from "echarts/types/src/echarts.all.js";
 
 const route = useRoute();
 
@@ -259,6 +266,23 @@ const fetchDetail = async () => {
     ElMessage.error("网络错误，请稍后再试");
   }
 
+};
+
+// 签到
+async function userSignin(isSign)  {
+  // await formRef.value.validate();
+  formData.value.user_id = user.value.user_id;
+  formData.value.is_signin = isSign;
+  const res = await updateUser(formData.value);
+  console.log("更新后的结果为：", res);
+  if (0 == res.errcode) {
+    user.value = res.data.user_info;
+  } else {
+    console.log(res.errmsg);
+    ElMessage.error("网络错误，请稍后再试");
+  }
+  // user.value = { ...formData };
+  ElMessage.success("保存成功");
 };
 
 // 打开 Drawer

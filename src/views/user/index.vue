@@ -212,13 +212,14 @@ const exportExcel = async () => {
       英文姓名: null,
       性别: item.gender,
       衣服尺码: item.cloth_size,
-      部门: item.deparment,
+      部门: item.department,
       职位: item.job_title,
       手机号: item.mobile_number,
       邮箱: item.email,
       房型: item.room_type,
       酒店入住日期: item.checkin_date,
       酒店退房日期: item.checkout_date,
+      5.11: null,
       5.12: null,
       5.13: null,
       5.14: null,
@@ -237,7 +238,8 @@ const exportExcel = async () => {
       送机车时间: null,
       是否参加欢迎晚宴: item.attend_welcome_dinner,
       是否参加研讨会晚宴: item.attend_gala_dinner,
-      备注: item.remarks
+      备注: item.remarks,
+      是否签到: item.is_signin ? "已签到" : "未签到"
     }));
 
     // 2. 转 worksheet
@@ -271,6 +273,7 @@ const exportExcel = async () => {
        { wch: 12 },
        { wch: 12 },
        { wch: 12 },
+       { wch: 12 },
        { wch: 12 },  // 抵达日期: item.arrival_date,
        { wch: 40 },  // 抵达方式: item.arrival_transport,
        { wch: 10 },  // 航班号: item.transport_number,
@@ -285,6 +288,7 @@ const exportExcel = async () => {
        { wch: 18 },  // 是否参加欢迎晚宴: item.attend_welcome_dinner,
        { wch: 18 },  // 是否参加研讨会晚宴: item.attend_gala_dinner,
        { wch: 30},  // 备注: item.remarks
+       { wch: 30},  // 签到：item.is_signin
     ];
 
     // 3. 创建 workbook
